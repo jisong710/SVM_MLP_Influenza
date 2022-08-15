@@ -16,147 +16,149 @@ from sklearn.metrics import plot_confusion_matrix
 import matplotlib.pyplot as plt
 import numpy as np
 
-dss = pd.read_csv("/content/drive/MyDrive/TA/Pasien 2 HR Sakit tanggal 10-11 bulan 2.csv")
-dss
+class mlp2:
+  def mlp2():
+    dss = pd.read_csv("/content/drive/MyDrive/TA/Pasien 2 HR Sakit tanggal 10-11 bulan 2.csv")
+    dss
 
-dss = dss.drop(columns=['record','value', 'confidence'])
-dss
+    dss = dss.drop(columns=['record','value', 'confidence'])
+    dss
 
-dss['dateTime'] = pd.to_datetime(dss['dateTime'])
-dss
+    dss['dateTime'] = pd.to_datetime(dss['dateTime'])
+    dss
 
-dss.set_index('dateTime', inplace=True)
-dss
+    dss.set_index('dateTime', inplace=True)
+    dss
 
-dss = dss.resample("5T").mean()
-dss
+    dss = dss.resample("5T").mean()
+    dss
 
-dss['bpm'] = dss['bpm'].interpolate(methode="linear")
-dss['target'] = dss['target'].interpolate(methode="linear")
-dss
+    dss['bpm'] = dss['bpm'].interpolate(methode="linear")
+    dss['target'] = dss['target'].interpolate(methode="linear")
+    dss
 
-dss = dss.astype({
-    'bpm' : int,
-    'target' : int
-})
-dss
+    dss = dss.astype({
+        'bpm' : int,
+        'target' : int
+    })
+    dss
 
-data_steps = pd.read_csv("/content/drive/MyDrive/TA/Pasien 2 steps sakit tanggal 10-11 Bulan 2.csv")
-data_steps
+    data_steps = pd.read_csv("/content/drive/MyDrive/TA/Pasien 2 steps sakit tanggal 10-11 Bulan 2.csv")
+    data_steps
 
-data_steps = data_steps.drop(columns=['record'])
-data_steps
+    data_steps = data_steps.drop(columns=['record'])
+    data_steps
 
-data_steps['dateTime'] = pd.to_datetime(data_steps['dateTime'])
-data_steps
+    data_steps['dateTime'] = pd.to_datetime(data_steps['dateTime'])
+    data_steps
 
-data_steps.set_index('dateTime', inplace=True)
-data_steps
+    data_steps.set_index('dateTime', inplace=True)
+    data_steps
 
-data_steps = data_steps.resample("5T").mean()
-data_steps
+    data_steps = data_steps.resample("5T").mean()
+    data_steps
 
-data_steps['value'] = data_steps['value'].interpolate(methode="linear")
-data_steps['target'] = data_steps['target'].interpolate(methode="linear")
-data_steps
+    data_steps['value'] = data_steps['value'].interpolate(methode="linear")
+    data_steps['target'] = data_steps['target'].interpolate(methode="linear")
+    data_steps
 
-data_steps = data_steps.astype({
-    'value' : int,
-    'target' : int
-})
-data_steps
+    data_steps = data_steps.astype({
+        'value' : int,
+        'target' : int
+    })
+    data_steps
 
-dss['steps'] = data_steps['value']
-dss
+    dss['steps'] = data_steps['value']
+    dss
 
-if str(dss['steps'].values[0]) == 'nan':
-  dss['steps'].iloc[0] = 0
-if str(dss['target'].values[0]) == 'nan':
-  dss['target'].iloc[0] = 0
-if str(dss['bpm'].values[0]) == 'nan':
-  dss['bpm'].iloc[0] = 0
+    if str(dss['steps'].values[0]) == 'nan':
+      dss['steps'].iloc[0] = 0
+    if str(dss['target'].values[0]) == 'nan':
+      dss['target'].iloc[0] = 0
+    if str(dss['bpm'].values[0]) == 'nan':
+      dss['bpm'].iloc[0] = 0
 
-dss['steps'] = dss['steps'].interpolate(methode='linear')
+    dss['steps'] = dss['steps'].interpolate(methode='linear')
 
-dss = dss.astype({'steps' : int})
+    dss = dss.astype({'steps' : int})
 
-dss
+    dss
 
-X = dss[['bpm','steps']]
-X = np.asarray(X)
-X
+    X = dss[['bpm','steps']]
+    X = np.asarray(X)
+    X
 
-y = dss['target']
-y = np.asarray(y)
-y
+    y = dss['target']
+    y = np.asarray(y)
+    y
 
-X_train, X_test, y_train, y_test = train_test_split(X, y,random_state=1, test_size=0.2)
-print('Train set:', X_train.shape, y_train.shape)
-print('Test set:', X_test.shape, y_test.shape)
+    X_train, X_test, y_train, y_test = train_test_split(X, y,random_state=1, test_size=0.2)
+    print('Train set:', X_train.shape, y_train.shape)
+    print('Test set:', X_test.shape, y_test.shape)
 
-y[:100]
+    y[:100]
 
-"""#MULTI LAYER-PERCEPTRON#"""
+    """#MULTI LAYER-PERCEPTRON#"""
 
-clf = MLPClassifier(hidden_layer_sizes=(256,128,64,32),activation="relu",random_state=1, verbose=1).fit(X_train, y_train)
-y_pred=clf.predict(X_test)
-print(clf.score(X_test, y_test))
+    clf = MLPClassifier(hidden_layer_sizes=(256,128,64,32),activation="relu",random_state=1, verbose=1).fit(X_train, y_train)
+    y_pred=clf.predict(X_test)
+    print(clf.score(X_test, y_test))
 
-from sklearn.metrics import classification_report, confusion_matrix
-import itertools
+    from sklearn.metrics import classification_report, confusion_matrix
+    import itertools
 
-def plot_confusion_matrix(cm, classes,
-                          normalize=False,
-                          title='Confusion matrix',
-                          cmap=plt.cm.Blues):
-    """
-    This function prints and plots the confusion matrix.
-    Normalization can be applied by setting `normalize=True`.
-    """
-    if normalize:
-        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-        print("Normalized confusion matrix")
-    else:
-        print('Confusion matrix, without normalization')
+    def plot_confusion_matrix(cm, classes,
+                              normalize=False,
+                              title='Confusion matrix',
+                              cmap=plt.cm.Blues):
+        """
+        This function prints and plots the confusion matrix.
+        Normalization can be applied by setting `normalize=True`.
+        """
+        if normalize:
+            cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+            print("Normalized confusion matrix")
+        else:
+            print('Confusion matrix, without normalization')
 
-    print(cm)
+        print(cm)
 
-    plt.imshow(cm, interpolation='nearest', cmap=cmap)
-    plt.title(title)
-    plt.colorbar()
-    tick_marks = np.arange(len(classes))
-    plt.xticks(tick_marks, classes, rotation=45)
-    plt.yticks(tick_marks, classes)
+        plt.imshow(cm, interpolation='nearest', cmap=cmap)
+        plt.title(title)
+        plt.colorbar()
+        tick_marks = np.arange(len(classes))
+        plt.xticks(tick_marks, classes, rotation=45)
+        plt.yticks(tick_marks, classes)
 
-    fmt = '.2f' if normalize else 'd'
-    thresh = cm.max() / 2.
-    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, format(cm[i, j], fmt),
-                 horizontalalignment="center",
-                 color="white" if cm[i, j] > thresh else "black")
+        fmt = '.2f' if normalize else 'd'
+        thresh = cm.max() / 2.
+        for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+            plt.text(j, i, format(cm[i, j], fmt),
+                    horizontalalignment="center",
+                    color="white" if cm[i, j] > thresh else "black")
 
-    plt.tight_layout()
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
+        plt.tight_layout()
+        plt.ylabel('True label')
+        plt.xlabel('Predicted label')
 
-# Compute confusion matrix
-cnf_matrix = confusion_matrix(y_test, y_pred)
-pred_from_train = clf.predict(X_train)
-cnf_matrix_training_data = confusion_matrix(y_train, pred_from_train)
+    # Compute confusion matrix
+    cnf_matrix = confusion_matrix(y_test, y_pred)
+    pred_from_train = clf.predict(X_train)
+    cnf_matrix_training_data = confusion_matrix(y_train, pred_from_train)
 
-np.set_printoptions(precision=2)
+    np.set_printoptions(precision=2)
 
-print (classification_report(y_test, y_pred))
+    print (classification_report(y_test, y_pred))
 
-# Plot non-normalized confusion matrix
-plt.figure()
-plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
-# plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
+    # Plot non-normalized confusion matrix
+    plt.figure()
+    plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
+    # plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
 
-print('jumlah target testing yang influenza',len(list(filter(lambda x : x == 1, y_test))))
-print('jumlah hasil pred. data testing yang influenza',len(list(filter(lambda x : x == 1, y_pred))))
+    print('jumlah target testing yang influenza',len(list(filter(lambda x : x == 1, y_test))))
+    print('jumlah hasil pred. data testing yang influenza',len(list(filter(lambda x : x == 1, y_pred))))
 
-print('jumlah hasil pred. semua dataset yang influenza',len(list(filter(lambda x : clf.predict([x]) == 1, X))))
-print('jumlah hasil pred. semua dataset yang sehat',len(list(filter(lambda x : clf.predict([x]) == 0, X))))
-print('kombinasi bpm steps yang influenza', list(filter(lambda x : clf.predict([x]) == 1, X_test)))
-clf.predict([[131,1]])
+    print('jumlah hasil pred. semua dataset yang influenza',len(list(filter(lambda x : clf.predict([x]) == 1, X))))
+    print('jumlah hasil pred. semua dataset yang sehat',len(list(filter(lambda x : clf.predict([x]) == 0, X))))
+    print('kombinasi bpm steps yang influenza', list(filter(lambda x : clf.predict([x]) == 1, X_test)))
+    clf.predict([[131,1]])

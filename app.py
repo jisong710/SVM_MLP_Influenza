@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request
-from module.MLP1
-from module.MLP2
-from module.SVM
+from module.MLP1 import mlp1
+from module.MLP2 import mlp2
+from module.SVM import svm
 
 app = Flask(__name__)
-algoritmalstm = SVM()
-algoritmasvr = MLP1()
-algoritmasvr = MLP2()
+algoritmalstm = svm()
+algoritmasvr = mlp1()
+algoritmasvr = mlp2()
 @app.route('/',methods = ['POST', 'GET'])
 def index():
     return render_template('halamanUtama.html')
