@@ -56,3 +56,6 @@ class mlp:
             'steps': int,
             'Target': int
         })
+        
+svm1 = mlp
+svm1.mlp()

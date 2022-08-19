@@ -12,7 +12,7 @@ def index():
     return render_template('halamanUtama.html')
 @app.route('/mlp',methods = ['POST', 'GET'])
 def hmlp():
-    return render_template('SVM.html')
+    return render_template('MLP.html')
 @app.route('/svm',methods = ['POST', 'GET'])
 def hsvm():
     return render_template('SVM.html')

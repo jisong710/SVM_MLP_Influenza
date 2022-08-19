@@ -7,8 +7,8 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.svm import SVC
 import matplotlib.pyplot as plt
 
-class svm:
-    def svm():
+class dataset:
+    def dataset():
         df1 = pd.read_csv("HR PASIEN 1.csv", sep=';')
         df2 = pd.read_csv("HRV PASIEN 1.csv", sep=';')
         df3 = pd.read_csv("RHR PASIEN 1.csv", sep=';')
@@ -56,19 +56,4 @@ class svm:
             'steps': int,
             'Target': int
         })
-        feature_df = df1[['bpm', 'steps']]
-        x = np.asarray(feature_df)
-        x[0:50]
-
-        df1['target'] = df1['target'].astype('int')
-        y = np.asarray(df1['target'])
-        y[:50] , y[len(y)-50:]
-
-        x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.2, random_state=2)
-        print('Train set:', x_train.shape, y_train.shape)
-        print('Test set:', x_test.shape, y_test.shape)
-
-        df1.bpm.value_counts()
-
-svm1 = svm
-svm1.svm()
+        df1.to_csv('hasil.csv')
