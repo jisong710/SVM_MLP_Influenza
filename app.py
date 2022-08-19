@@ -10,10 +10,12 @@ algoritmasvr = mlp2()
 @app.route('/',methods = ['POST', 'GET'])
 def index():
     return render_template('halamanUtama.html')
-
-@app.route('/information',methods = ['POST', 'GET'])
-def information():
-    return render_template('informasialgoritma.html')
+@app.route('/mlp',methods = ['POST', 'GET'])
+def hmlp():
+    return render_template('SVM.html')
+@app.route('/svm',methods = ['POST', 'GET'])
+def hsvm():
+    return render_template('SVM.html')
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000, debug=True)
  

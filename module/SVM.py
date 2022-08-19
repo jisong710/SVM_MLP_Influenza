@@ -14,12 +14,14 @@ import numpy as np
 import scipy.optimize as opt
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.svm import SVC
+
 # %matplotlib inline 
 import matplotlib.pyplot as plt
 #panjang array
 class svm:
     def svm():
-        df = pd.read_csv("/content/Pasien1 HR.csv")
+        df = pd.read_csv("Pasien-1.csv")
         df
 
         df = df.drop(columns=['record', 'value', 'confidence'])
