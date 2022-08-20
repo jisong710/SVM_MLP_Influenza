@@ -15,4 +15,5 @@ class dataclean:
         print(df['steps'].value_counts())
         print(df['Target'].value_counts())
         print(df['RMSSD'].value_counts())
+        df.isnull().sum()
         
