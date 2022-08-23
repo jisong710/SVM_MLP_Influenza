@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 import pandas as pd
 import pylab as pl
 import numpy as np
@@ -19,7 +20,6 @@ class dataset:
         df1
 
         df1.head(40)
-        df1.set_index('DateTime', inplace=True)
         df1
 
         df2['DateTime'] = pd.to_datetime(df2['DateTime'])
@@ -27,7 +27,6 @@ class dataset:
 
         df2.dtypes
         df2.head(40)
-        df2.set_index('DateTime', inplace=True)
         df2
         
         df3.dtypes
@@ -35,25 +34,17 @@ class dataset:
         df3
 
         df3.head(40)
-
-        df3.set_index('DateTime', inplace=True)
         df3
 
-        df4.dtypes
+        print(df4.dtypes)
         df4['DateTime'] = pd.to_datetime(df4['DateTime'])
         df4
-
         df4.head(40)
-
-        df4.set_index('DateTime', inplace=True)
         df4
-        df1['steps'] = df4['Value']
         df1['RMSSD'] = df2['RMSSD']
         df1['RHR'] = df3['RHR']
+        df1['steps'] = df4['steps']
+        df1.set_index('DateTime', inplace=True)
+        df1 = df1.resample("5min").mean()
         print(df1.head())
-        df1 = df1.astype({
-            'BPM': int,
-            'steps': int,
-            'Target': int
-        })
-        df1.to_csv('hasil.csv')
+        return df1

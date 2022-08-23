@@ -1,11 +1,11 @@
 from flask import Flask, render_template, request
-from module.MLP1 import mlp1
+from module.mlp import mlp
 from module.MLP2 import mlp2
 from module.SVM import svm
 
 app = Flask(__name__)
 algoritmalstm = svm()
-algoritmasvr = mlp1()
+algoritmasvr = mlp()
 algoritmasvr = mlp2()
 @app.route('/',methods = ['POST', 'GET'])
 def index():

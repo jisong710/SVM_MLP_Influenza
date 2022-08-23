@@ -15,75 +15,27 @@ import scipy.optimize as opt
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.svm import SVC
-
+from module.preprocess import preproces
 # %matplotlib inline 
 import matplotlib.pyplot as plt
 #panjang array
 class svm:
     def svm():
-        df = pd.read_csv("Pasien-1.csv")
-        df
+        df = preproces.preproces()
 
-        df = df.drop(columns=['record', 'value', 'confidence'])
-        df
-
-        df.dtypes
-
-        df['dateTime'] = pd.to_datetime(df['dateTime'])
-        df
-
-        df.head(40)
-
-        df.set_index('dateTime', inplace=True)
-        df
-
-        df = df.resample('5T').mean()
-        df
-
-        df1 = pd.read_csv("/content/Pasien1 Steps.csv")
-        df1
-
-        del df1['record']
-        df1
-
-        df1['dateTime'] = pd.to_datetime(df1['dateTime'])
-        df1
-
-        df1.set_index('dateTime', inplace=True)
-        df1
-
-        df1 = df1.resample('5T').mean()
-        df1
-        #NaN bisa dihilangin, bisa di ubah dengan angka
-
-        df['steps'] = df1['value']
-        df.interpolate('linear', inplace=True)
-        df
-
-        #roundup (kodingan)
-
-        df = df.astype({
-            'bpm': int,
-            'steps': int,
-            'target': int
-        })
-        df
-
-        print(df.dtypes)
-
-        feature_df = df[['bpm', 'steps']]
+        feature_df = df[['BPM','steps']]
         x = np.asarray(feature_df)
         x[0:50]
 
-        df['target'] = df['target'].astype('int')
-        y = np.asarray(df['target'])
+        df['Target'] = df['Target'].astype('int')
+        y = np.asarray(df['Target'])
         y[:50] , y[len(y)-50:]
 
-        x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.2, random_state=2)
+        x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.4, random_state=2)
         print('Train set:', x_train.shape, y_train.shape)
         print('Test set:', x_test.shape, y_test.shape)
 
-        df.bpm.value_counts()
+        df.BPM.value_counts()
 
         """SVM"""
 
@@ -153,7 +105,7 @@ class svm:
 
         # Plot non-normalized confusion matrix
         plt.figure()
-        plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
+        plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= True,  title='Confusion matrix')
         # plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
 
         from sklearn.metrics import f1_score
