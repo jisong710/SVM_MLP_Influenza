@@ -23,7 +23,7 @@ class svm:
     def svm():
         df = preproces.preproces()
 
-        feature_df = df[['BPM','steps']]
+        feature_df = df[['BPM','RHR','steps']]
         x = np.asarray(feature_df)
         x[0:50]
 

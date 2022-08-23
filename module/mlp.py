@@ -22,7 +22,7 @@ class mlp:
     dss = preproces.preproces()
     dss
 
-    X = dss[['BPM','steps']]
+    X = dss[['BPM','RHR','steps']]
     X = np.asarray(X)
     X
 
@@ -30,7 +30,7 @@ class mlp:
     y = np.asarray(y)
     y
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y,random_state=1, test_size=0.2)
+    X_train, X_test, y_train, y_test = train_test_split(X, y,random_state=1, test_size=0.4)
     print('Train set:', X_train.shape, y_train.shape)
     print('Test set:', X_test.shape, y_test.shape)
 
