@@ -6,8 +6,8 @@ body, html {
   .bgimg {
     background-position: center;
     background-size: cover;
-    background-color:red;
-    min-height: 50%;
+    background-color:lightblue;
+    min-height: 75%;
   }
   
   .menu {
