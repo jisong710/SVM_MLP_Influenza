@@ -69,10 +69,6 @@ class svm:
             """
             if normalize:
                 cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-                print("Normalized confusion matrix")
-            else:
-                print('Confusion matrix, without normalization')
-
             print(cm)
 
             plt.imshow(cm, interpolation='nearest', cmap=cmap)
@@ -104,7 +100,7 @@ class svm:
 
         # Plot non-normalized confusion matrix
         plt.figure()
-        plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= True,  title='Confusion matrix')
+        plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
         # plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
 
         from sklearn.metrics import f1_score
