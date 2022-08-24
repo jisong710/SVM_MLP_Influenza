@@ -159,4 +159,5 @@ class svm2:
                 'g--',
                 linewidth=2)
         plt.savefig("static/img/svm.png", format='png')
+        plt.show()
         return list(filter(lambda x : clf.predict([x]) == 1,x_train)),list(filter(lambda x : clf.predict([x]) == 1,x_train))
