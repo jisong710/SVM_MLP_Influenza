@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask, render_template, request
 from module.mlp import mlp
 from module.MLP2 import mlp2
