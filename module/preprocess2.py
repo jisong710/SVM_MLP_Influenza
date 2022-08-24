@@ -8,8 +8,8 @@ import matplotlib.pyplot as plt
 from module.dataclean2 import dataclean
 
 class preproces:
-    def preproces():
-        df = dataclean.dataclean()
+    def preproces(self):
+        df = dataclean().dataclean()
         normalize = preprocessing.MinMaxScaler()
         df= pd.DataFrame(normalize.fit_transform(df.values), columns=df.columns, index=df.index)
         print(df.skew(axis=0))

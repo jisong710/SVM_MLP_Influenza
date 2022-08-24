@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 #panjang array
 class svm:
     def svm(self):
-        df = preproces.preproces()
+        df = preproces().preproces()
 
         feature_df = df[['BPM','RHR','steps']]
         x = np.asarray(feature_df)

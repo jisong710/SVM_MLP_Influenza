@@ -2,8 +2,8 @@ import matplotlib.pyplot as plt
 from module.dataset2 import dataset
 
 class dataclean:
-    def dataclean():
-        df = dataset.dataset()
+    def dataclean(self):
+        df = dataset().dataset()
         print(df['BPM'].value_counts())
         print(df['RHR'].value_counts())
         print(df['steps'].value_counts())

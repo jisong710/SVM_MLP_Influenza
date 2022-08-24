@@ -1,7 +1,7 @@
 import pandas as pd
 
 class dataset:
-    def dataset():
+    def dataset(self):
         df1 = pd.read_csv("HR PASIEN 1.csv", sep=';')
         df2 = pd.read_csv("HRV PASIEN 1.csv", sep=';')
         df3 = pd.read_csv("RHR PASIEN 1.csv", sep=';')

@@ -19,7 +19,7 @@ from module.preprocess2 import preproces
 
 class mlp2:
   def mlp2(self):
-    dss = preproces.preproces()
+    dss = preproces().preproces()
     dss
 
     X = dss[['BPM','RHR','steps']]
