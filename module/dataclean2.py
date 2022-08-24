@@ -24,7 +24,6 @@ class dataclean:
         })
         fig = plt.figure(figsize =(10, 7))
         plt.pie(df['Target'].value_counts(), labels = ["sehat","sakit"])
-        plt.show()
         print(df['Target'].value_counts())
         df.to_csv('hasil.csv')
         return df
