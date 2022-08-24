@@ -69,7 +69,6 @@ class svm2:
             """
             if normalize:
                 cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
-
             print(cm)
 
             plt.imshow(cm, interpolation='nearest', cmap=cmap)
