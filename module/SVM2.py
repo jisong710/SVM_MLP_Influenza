@@ -159,4 +159,4 @@ class svm2:
                 'g--',
                 linewidth=2)
         plt.savefig("static/img/svm.png", format='png')
-        return max(y_pred),classification_report(y_test, yhat)
+        return list(filter(lambda x : clf.predict([x]) == 1,x_train)),list(filter(lambda x : clf.predict([x]) == 1,x_train))

@@ -159,4 +159,4 @@ class svm:
                 'g--',
                 linewidth=2)
         plt.savefig("static/img/svm.png", format='png')
-        return max(y_pred),classification_report(y_test, yhat)
+        return classification_report(y_test, yhat),classification_report(y_test, yhat)
