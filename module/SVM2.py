@@ -129,12 +129,12 @@ class svm2:
         w = best_model.coef0           # w consists of 2 elements
         b = best_model.intercept_      # b consists of 1 element
         x_points = np.linspace(-1, 1)    # generating x-points from -1 to 1
-        y_points = 100  # getting corresponding y-points
+        y_points = np.linspace(-1, 1) # getting corresponding y-points
         # Plotting a red hyperplane
         plt.plot(x_points, y_points, c='r');
         # Encircle support vectors
-        plt.scatter(clf.support_vectors_[:, 0],
-                    clf.support_vectors_[:, 1], 
+        plt.scatter(best_model.support_vectors_[:, 0],
+                    best_model.support_vectors_[:, 1], 
                     s=50, 
                     facecolors='none', 
                     edgecolors='k', 
