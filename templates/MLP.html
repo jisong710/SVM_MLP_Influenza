@@ -27,14 +27,37 @@
   <div class="w3-display-middle w3-center">
     <span class="w3-text-black" style="font-size:90px">Algoritma MLP</span>
     <form action="/mlp" method="post">
-      <p><button class="w3-button w3-black" type="submit">start</button></p>
+      <p><select name="pasien" id="pasien">
+        <option value="1">pasien 1</option>
+        <option value="2">pasien 2</option>
+      </select> <input type="text" name="BPM" id="BPM" placeholder="masukkan detak jantung anda"> <button class="w3-button w3-black" type="submit">start</button></p>
     </form>
   </div>
 </header>
 
 <!-- Add a background color and large text to the whole page -->
 <div class="w3-sand w3-grayscale w3-large">
-
+  {% if data.bool %}
+  <div class="w3-container" id="where" style="padding-bottom:32px; padding-top:100px">
+    <div class="w3-row w3-auto">
+      <div class="w3-col l8 w3-white" id="plot">
+        <img src="{{ url_for('static', filename='img/mlp.png') }}"  class="w3-block" alt="" srcset="" style="height: 450px;">
+      </div>
+      <div class="w3-col l4 w3-white" id="tabel">
+        <table class="w3-table w3-block w3-striped w3-border">
+          {% for row in range(length) %}
+          <tr>
+            <td>{{data[0][row]}}</td>
+            <td>{{data[1][row]}}</td>
+            <td>{{data[2][row]}}</td>
+            <td>{{data[3][row]}}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+  {% endif %}
   </div>
   
 

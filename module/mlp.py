@@ -18,7 +18,7 @@ import numpy as np
 from module.preprocess import preproces
 
 class mlp:
-  def mlp():
+  def mlp(self):
     dss = preproces.preproces()
     dss
 
@@ -91,6 +91,7 @@ class mlp:
     # Plot non-normalized confusion matrix
     plt.figure()
     plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= True,  title='Confusion matrix')
+    plt.savefig("static/img/mlp.png", format='png')
     # plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
 
     print('jumlah Target testing yang influenza',len(list(filter(lambda x : x == 1, y_test))))
@@ -100,3 +101,4 @@ class mlp:
     print('jumlah hasil pred. semua dataset yang sehat',len(list(filter(lambda x : clf.predict([x]) == 0, X))))
     print('kombinasi BPM steps yang influenza', list(filter(lambda x : clf.predict([x]) == 1, X_test)))
     clf.predict([[131,1]])
+    return clf.predict([[131,1]]),classification_report(y_test, y_pred)

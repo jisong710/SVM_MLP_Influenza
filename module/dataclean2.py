@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from module.dataset import dataset
+from module.dataset2 import dataset
 
 class dataclean:
     def dataclean():
@@ -8,11 +8,9 @@ class dataclean:
         print(df['RHR'].value_counts())
         print(df['steps'].value_counts())
         print(df['Target'].value_counts())
-        print(df['RMSSD'].value_counts())
         print(df.isnull().sum())
         print(df.duplicated().sum())
         df['steps'].fillna((0), inplace=True)
-        df['RMSSD'].fillna((df['RMSSD'].mean()), inplace=True)
         df['RHR'].fillna((df['RHR'].mean()), inplace=True)
         df['BPM'].fillna((df['RMSSD'].mean()), inplace=True)
         df['Target'].fillna((0), inplace=True)

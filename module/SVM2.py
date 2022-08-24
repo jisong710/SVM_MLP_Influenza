@@ -15,12 +15,12 @@ import scipy.optimize as opt
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.svm import SVC
-from module.preprocess import preproces
+from module.preprocess2 import preproces
 # %matplotlib inline 
 import matplotlib.pyplot as plt
 #panjang array
-class svm:
-    def svm(self):
+class svm2:
+    def svm2(self):
         df = preproces.preproces()
 
         feature_df = df[['BPM','RHR','steps']]
