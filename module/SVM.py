@@ -108,7 +108,7 @@ class svm:
 
         # Plot non-normalized confusion matrix
         plt.figure()
-        plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= True,  title='Confusion matrix')
+        plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
         # plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
         plt.savefig('svm.png')
         from sklearn.metrics import f1_score
