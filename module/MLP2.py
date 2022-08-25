@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1Ge27vPx2Lqap0GNJVNj-vVSuAH0oCqT8
 """
 
+from random import randint
+import random
 from sklearn.datasets import load_iris
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split
@@ -18,7 +20,9 @@ import numpy as np
 from module.preprocess2 import preproces
 
 class mlp2:
-  def mlp2(self):
+  def mlp2(self, DetakJantung):
+    kumpulandata = pd.read_csv("hasil2.csv")
+    kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]
     dss = preproces().preproces()
     dss
 
@@ -100,4 +104,4 @@ class mlp2:
     print('jumlah hasil pred. semua dataset yang influenza',len(list(filter(lambda x : clf.predict([x]) == 1, X))))
     print('jumlah hasil pred. semua dataset yang sehat',len(list(filter(lambda x : clf.predict([x]) == 0, X))))
     print('kombinasi BPM steps yang influenza', list(filter(lambda x : clf.predict([x]) == 1, X_test)))
-    return classification_report(y_test, y_pred,output_dict=True),classification_report(y_test, y_pred,output_dict=True)
+    return classification_report(y_test, y_pred,output_dict=True),clf.predict([[int(DetakJantung)/100,random.random(),random.random()]])

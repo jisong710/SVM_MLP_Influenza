@@ -81,14 +81,11 @@
       <br>
       <div class="w3-container">
         <table class="w3-table-all w3-text-black w3-bar-block">
-            {% for row in data %}
+            {% for key, value in data.items() %}
             <tr>
-              <td>{{row[0]}}</td>
-              <td>{{row[1]}}</td>
-              <td>{{row[2]}}</td>
-              <td>{{row[3]}}</td>
+                <td> {{ key }} </td>
             </tr>
-            {% endfor %}
+           {% endfor %}
           </table>
       </div>
 </div>

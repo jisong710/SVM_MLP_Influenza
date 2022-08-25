@@ -20,6 +20,7 @@ class dataclean:
         df = df.astype({
             'BPM': int,
             'steps': int,
+            'RHR': int,
             'Target': int
         })
         plt.figure(figsize =(10, 7))

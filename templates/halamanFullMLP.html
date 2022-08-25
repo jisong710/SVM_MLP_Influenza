@@ -68,8 +68,8 @@
   
 <!-- Page Content -->
 <div class="w3-content w3-padding-64 w3-xlarge" id="container" >
-    <form class="w3-container" action="/SVM" method="POST">
-        <h2>Mencari data dengan SVM</h2>
+    <form class="w3-container" action="/MLP" method="POST">
+        <h2>Mencari data dengan MLP</h2>
         <p><select class="w3-select" name="pasien">
           <option value="" disabled selected>~~Urutan Pasien~~</option>
           <option value="1">Pasien 1</option>
@@ -81,14 +81,26 @@
       <br>
       <div class="w3-container">
         <table class="w3-table-all w3-text-black w3-bar-block">
-            {% for row in data %}
             <tr>
-                <td>{{row[0]}}</td>
-                <td>{{row[1]}}</td>
-                <td>{{row[2]}}</td>
-                <td>{{row[3]}}</td>
+            <th></th>
+            <th>precision</th>
+            <th>recall</th>
+            <th>f1-score</th>
+            <th>support</th>
             </tr>
-            {% endfor %}
+            {% for key, value in data.items() %}
+            <tr>
+                <td> {{key}} </td>
+                <td>{{value.precision}}</td>
+                <td>{{value.recall}}</td>
+                {% if key == "accuracy" %}
+                <td>{{value}}</td>
+                {% else %}
+                <td>{{value["f1-score"]}}</td>
+                {% endif %}
+                <td>{{value.support}}</td>
+            </tr>
+           {% endfor %}
           </table>
       </div>
 </div> 

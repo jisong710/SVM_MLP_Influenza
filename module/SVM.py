@@ -8,6 +8,8 @@ Original file is located at
 """
 
 # Commented out IPython magic to ensure Python compatibility.
+from random import randint
+import random
 import pandas as pd
 import pylab as pl
 import numpy as np
@@ -20,7 +22,9 @@ from module.preprocess import preproces
 import matplotlib.pyplot as plt
 #panjang array
 class svm:
-    def svm(self):
+    def svm(self, DetakJantung):
+        kumpulandata = pd.read_csv("hasil1.csv")
+        kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]          
         df = preproces().preproces()
 
         feature_df = df[['BPM','RHR','steps']]
@@ -155,5 +159,4 @@ class svm:
                 'g--',
                 linewidth=2)
         plt.savefig("static/img/svm.png", format='png')
-        plt.show()
-        return classification_report(y_test, yhat,output_dict=True),classification_report(y_test, yhat,output_dict=True)
+        return classification_report(y_test, yhat,output_dict=True),clf.predict([[int(DetakJantung)/100,random.random(),random.random()]])
