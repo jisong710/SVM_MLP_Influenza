@@ -20,6 +20,8 @@ from sklearn.svm import SVC
 from module.preprocess2 import preproces
 # %matplotlib inline 
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
 #panjang array
 class svm2:
     def svm2(self, DetakJantung):
@@ -27,7 +29,7 @@ class svm2:
         hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]          
         print(kumpulandata.head())
         df = preproces().preproces()
-        kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(14,8),title="deteksi detak jantung dengan penderita")
+        kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(10,5),title="deteksi detak jantung dengan penderita")
         plt.show()
         feature_df = df[['BPM','RHR','steps']]
         x = np.asarray(feature_df)

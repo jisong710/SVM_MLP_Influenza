@@ -9,6 +9,8 @@ Original file is located at
 
 from random import randint
 import random
+import matplotlib
+matplotlib.use('Agg')
 from sklearn.datasets import load_iris
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split

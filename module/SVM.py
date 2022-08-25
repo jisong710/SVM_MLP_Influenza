@@ -18,6 +18,8 @@ from sklearn import preprocessing
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.svm import SVC
 from module.preprocess import preproces
+import matplotlib
+matplotlib.use('Agg')
 # %matplotlib inline 
 import matplotlib.pyplot as plt
 #panjang array
@@ -26,7 +28,7 @@ class svm:
         kumpulandata = pd.read_csv("hasil1.csv")
         hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung] 
         print(kumpulandata.head())
-        kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(14,8),title="deteksi detak jantung dengan penderita")
+        kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(10,5),title="deteksi detak jantung dengan penderita")
         plt.show()  
         df = preproces().preproces()
         feature_df = df[['BPM','RHR','steps']]

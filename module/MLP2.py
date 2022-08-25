@@ -8,6 +8,8 @@ Original file is located at
 """
 
 from random import randint
+import matplotlib
+matplotlib.use('Agg')
 import random
 from sklearn.datasets import load_iris
 from sklearn.neural_network import MLPClassifier
