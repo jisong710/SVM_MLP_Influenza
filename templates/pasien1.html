@@ -1,23 +1,12 @@
 <div class="w3-container">
-    <h2>data device</h2>
+    <h2>data pasien 1</h2>
     <div class="w3-responsive">
-    <table class="w3-table-all w3-text-black">
-    <tr>
-      <th>Nama Device</th>
-      <th>jam menyala</th>
-      <th>daya</th>
-      <th>kelas prioritas</th>
-      <th>action</th>
-    </tr>
-    {% for row in data2 %}
-    <tr>
-      <td>{{row[1]}}</td>
-      <td>{{row[5]}}</td>
-      <td>{{row[2]}}</td>
-      <td>{{row[4]}}</td>
-      <td><button class="w3-btn w3-green">edit</button><button class="w3-btn w3-red">delete</button></td>
-    </tr>
-    {% endfor %}
+    <table class="w3-table-all w3-text-black w3-bar-block">
+      {% for table in tables %}
+        <tr>
+          <td>{{ table|safe }}</td>
+        </tr>
+      {% endfor %}
     </table>
     </div>
 </div>

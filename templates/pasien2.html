@@ -1,18 +1,13 @@
 <div class="w3-container">
-    <h2>data device</h2>
+    <h2>data pasien 2</h2>
     <div class="w3-responsive">
-    <table class="w3-table-all w3-text-black">
-    <tr>
-      <th>Nama Device</th>
-      <th>jam menyala</th>
-    </tr>
-    {% for row in data2%}
-    <tr>
-      <td>device {{row}}</td>
-      <td>{{row}}</td>
-    </tr>
-    {% endfor %}
-    </table>
+      <table class="w3-table-all w3-text-black w3-bar-block">
+        {% for table in tables %}
+          <tr>
+            <td>{{ table|safe }}</td>
+          </tr>
+        {% endfor %}
+      </table>
     </div>
 </div>
 

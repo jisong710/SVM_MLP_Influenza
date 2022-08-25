@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import pandas as pd
 from module.mlp import mlp
 from module.MLP2 import mlp2
 from module.SVM import svm
@@ -20,11 +21,13 @@ def akun():
 
 @app.route('/Pasien1',methods = ['POST', 'GET'])
 def pasien1():
-    return render_template('pasien1.html')
+    df = pd.read_csv('hasil1.csv', nrows=1000)
+    return render_template('pasien1.html', tables=[df.to_html(classes='data')], titles=df.columns.values)
 
 @app.route('/Pasien2',methods = ['POST', 'GET'])
 def pasien2():
-    return render_template('pasien2.html')
+    df = pd.read_csv('hasil2.csv', nrows=1000)
+    return render_template('pasien2.html', tables=[df.to_html(classes='data')], titles=df.columns.values)
 
 @app.route('/MLP',methods = ['POST', 'GET'])
 def hMLP():
