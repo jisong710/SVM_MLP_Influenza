@@ -39,7 +39,7 @@ class mlp2:
     y = np.asarray(y)
     y
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y,random_state=1, test_size=0.4)
+    X_train, X_test, y_train, y_test = train_test_split(X, y,random_state=123, test_size=0.3)
     print('Train set:', X_train.shape, y_train.shape)
     print('Test set:', X_test.shape, y_test.shape)
 
@@ -82,7 +82,7 @@ class mlp2:
         for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
             plt.text(j, i, format(cm[i, j], fmt),
                     horizontalalignment="center",
-                    color="white" if cm[i, j] > thresh else "black")
+                    color="black" if cm[i, j] > thresh else "black")
 
         plt.tight_layout()
         plt.ylabel('True label')

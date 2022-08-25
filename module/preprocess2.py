@@ -12,8 +12,4 @@ class preproces:
         df = dataclean().dataclean()
         normalize = preprocessing.MinMaxScaler()
         df= pd.DataFrame(normalize.fit_transform(df.values), columns=df.columns, index=df.index)
-        print(df.skew(axis=0))
-        df['steps']= np.where(df['steps']<df['steps'].quantile(0.10),df['steps'].quantile(0.10),df['steps'])
-        df['steps']= np.where(df['steps']>df['steps'].quantile(0.90),df['steps'].quantile(0.90),df['steps'])
-        print(df.skew(axis=0))
         return df

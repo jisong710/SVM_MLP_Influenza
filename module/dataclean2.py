@@ -1,3 +1,4 @@
+from random import randint
 import matplotlib.pyplot as plt
 from module.dataset2 import dataset
 
@@ -10,12 +11,13 @@ class dataclean:
         print(df['Target'].value_counts())
         print(df.isnull().sum())
         print(df.duplicated().sum())
-        df['steps'].fillna((0), inplace=True)
+        df['steps'].fillna((df['steps'].mean()), inplace=True)
         df['RHR'].fillna((df['RHR'].mean()), inplace=True)
         df['BPM'].fillna((df['BPM'].mean()), inplace=True)
-        df['Target'].fillna((0), inplace=True)
+        df.dropna(subset=['Target'],inplace=True)
         print(df.isnull().sum())
         print(df.duplicated().sum())
+        df.drop_duplicates(inplace=True)
         print(df.dtypes)
         df = df.astype({
             'BPM': int,
@@ -23,8 +25,6 @@ class dataclean:
             'RHR': int,
             'Target': int
         })
-        plt.figure(figsize =(10, 7))
-        plt.pie(df['Target'].value_counts(), labels = ["sehat","sakit"])
         print(df['Target'].value_counts())
         df.to_csv('hasil2.csv')
         return df

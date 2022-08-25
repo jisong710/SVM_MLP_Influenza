@@ -1,7 +1,8 @@
 import pandas as pd
 
 class dataset:
-    def dataset(self):
+    def dataset(self,):
+
         df1 = pd.read_csv("HR PASIEN 1.csv", sep=';')
         df2 = pd.read_csv("HRV PASIEN 1.csv", sep=';')
         df3 = pd.read_csv("RHR PASIEN 1.csv", sep=';')
@@ -27,7 +28,6 @@ class dataset:
 
         df3.head(40)
         df3
-
         print(df4.dtypes)
         df4['DateTime'] = pd.to_datetime(df4['DateTime'])
         df4

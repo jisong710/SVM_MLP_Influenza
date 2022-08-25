@@ -1,3 +1,4 @@
+from random import randint
 import matplotlib.pyplot as plt
 from module.dataset import dataset
 
@@ -11,13 +12,14 @@ class dataclean:
         print(df['RMSSD'].value_counts())
         print(df.isnull().sum())
         print(df.duplicated().sum())
-        df['steps'].fillna((0), inplace=True)
+        df['steps'].fillna((df['steps'].mean()), inplace=True)
         df['RMSSD'].fillna((df['RMSSD'].mean()), inplace=True)
         df['RHR'].fillna((df['RHR'].mean()), inplace=True)
         df['BPM'].fillna((df['BPM'].mean()), inplace=True)
-        df['Target'].fillna((0), inplace=True)
+        df['Target'].fillna(randint(0,1), inplace=True)
         print(df.isnull().sum())
         print(df.duplicated().sum())
+        df.drop_duplicates(inplace=True)
         print(df.dtypes)
         df = df.astype({
             'BPM': int,

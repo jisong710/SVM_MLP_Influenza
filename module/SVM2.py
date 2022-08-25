@@ -18,19 +18,19 @@ from sklearn import preprocessing
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.svm import SVC
 from module.preprocess2 import preproces
-# %matplotlib inline 
-import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
+# %matplotlib inline 
+import matplotlib.pyplot as plt
 #panjang array
 class svm2:
     def svm2(self, DetakJantung):
         kumpulandata = pd.read_csv("hasil2.csv")
-        hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]          
+        hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung] 
         print(kumpulandata.head())
-        df = preproces().preproces()
         kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(10,5),title="deteksi detak jantung dengan penderita")
-        plt.show()
+        plt.show()  
+        df = preproces().preproces()
         feature_df = df[['BPM','RHR','steps']]
         x = np.asarray(feature_df)
         x[0:50]
@@ -39,7 +39,7 @@ class svm2:
         y = np.asarray(df['Target'])
         y[:50] , y[len(y)-50:]
 
-        x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.4, random_state=2)
+        x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.5, random_state=123)
         print('Train set:', x_train.shape, y_train.shape)
         print('Test set:', x_test.shape, y_test.shape)
 
@@ -68,7 +68,7 @@ class svm2:
         import itertools
 
         def plot_confusion_matrix(cm, classes,
-                                normalize=False,
+                                normalize=True,
                                 title='Confusion matrix',
                                 cmap=plt.cm.Blues):
             """
@@ -108,9 +108,9 @@ class svm2:
 
         # Plot non-normalized confusion matrix
         plt.figure()
-        plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
+        plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= True,  title='Confusion matrix')
         # plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
-
+    
         from sklearn.metrics import f1_score
         f1_score(y_test, yhat, average='weighted')
 
@@ -133,7 +133,7 @@ class svm2:
         w = best_model.coef0           # w consists of 2 elements
         b = best_model.intercept_      # b consists of 1 element
         x_points = np.linspace(-1, 1)    # generating x-points from -1 to 1
-        y_points = np.linspace(-1, 1) # getting corresponding y-points
+        y_points = np.linspace(-1, 1)  # getting corresponding y-points
         # Plotting a red hyperplane
         plt.plot(x_points, y_points, c='r');
         # Encircle support vectors
@@ -162,5 +162,4 @@ class svm2:
                 points_of_line_below[:, 1], 
                 'g--',
                 linewidth=2)
-        plt.savefig("static/img/svm.png", format='png')
         return classification_report(y_test, yhat,output_dict=True),clf.predict([[int(DetakJantung)/100,random.random(),random.random()]])
