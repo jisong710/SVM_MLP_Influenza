@@ -62,13 +62,13 @@
     <a class="w3-bar-item w3-button" style="width:20% !important" onclick="$('#container').load('/Pasien2/');">OLAH</a>
   </div>
 </div>
-{% if report %}
+{% if report == 0 %}
 <script>
-  swal("selamat!","anda dinyatakan sehat","success");
+  alert("anda dinyatakan sehat");
 </script>
 {% else %}
 <script>
-    swal("selamat!","anda menderita influenza","success");
+    alert("anda menderita Influenza");
 </script>
 {% endif %}
 <!-- Page Content -->

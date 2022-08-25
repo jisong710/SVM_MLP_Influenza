@@ -16,13 +16,13 @@
 </head>
 
 <body style="background-color: #fad9df;">
-    {% if report %}
+    {% if report == 0 %}
     <script>
-      swal("selamat!","anda dinyatakan sehat","success");
+      alert("anda dinyatakan sehat");
     </script>
     {% else %}
     <script>
-        swal("selamat!","anda menderita Influenza","success");
+        alert("anda menderita Influenza");
     </script>
     {% endif %}
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
