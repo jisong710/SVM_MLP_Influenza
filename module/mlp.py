@@ -101,4 +101,4 @@ class mlp:
     print('jumlah hasil pred. semua dataset yang sehat',len(list(filter(lambda x : clf.predict([x]) == 0, X))))
     print('kombinasi BPM steps yang influenza', list(filter(lambda x : clf.predict([x]) == 1, X_test)))
     clf.predict([[131,1]])
-    return classification_report(y_test, y_pred),classification_report(y_test, y_pred)
+    return classification_report(y_test, y_pred,output_dict=True),classification_report(y_test, y_pred,output_dict=True)

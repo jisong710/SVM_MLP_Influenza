@@ -95,8 +95,8 @@ class svm2:
         cnf_matrix_training_data = confusion_matrix(y_train, pred_from_train)
 
         np.set_printoptions(precision=2)
-
-        print (classification_report(y_test, yhat))
+        report = classification_report(y_test, yhat)
+        print (report)
 
         # Plot non-normalized confusion matrix
         plt.figure()
@@ -156,4 +156,4 @@ class svm2:
                 linewidth=2)
         plt.savefig("static/img/svm.png", format='png')
         plt.show()
-        return list(filter(lambda x : clf.predict([x]) == 1,x_train)),list(filter(lambda x : clf.predict([x]) == 1,x_train))
+        return classification_report(y_test, yhat,output_dict=True),classification_report(y_test, yhat,output_dict=True)
