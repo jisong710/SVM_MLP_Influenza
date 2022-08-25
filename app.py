@@ -36,8 +36,10 @@ def hMLP():
     if(request.method == "POST"):
         if(request.form['pasien'] == "1"):
             data,report = algoritmamlp.mlp(request.form['BPM'])
+            report = bool(report)
         else:
             data,report = algoritmamlp2.mlp2(request.form['BPM'])
+            report = bool(report)
         length = len(data)
         return render_template('halamanFullMLP.html',data=data ,length = length, report = report)
     length = len(data)
@@ -50,8 +52,10 @@ def hsvm():
     if(request.method == "POST"):
         if(request.form['pasien'] == "1"):
             data,report = algoritmasvm.svm(request.form['BPM'])
+            report = bool(report)
         else:
             data,report = algoritmasvm2.svm2(request.form['BPM'])
+            report = bool(report)
         length = len(data)
         return render_template('halamanFullSVM.html',data=data ,length = length, report = report)
     length = len(data)

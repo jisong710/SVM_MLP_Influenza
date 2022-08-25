@@ -14,6 +14,7 @@
 </head>
 <body style="background-color: #fad9df;">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+
   <script>
     $.urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -34,14 +35,7 @@
     }
   </script>
   <!-- Icon Bar (Sidebar - hidden on small screens) -->
-<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center w3-text-white" style="background-color: #6b0303
-;" id="myNavbar">
-  <!-- Avatar image in top left corner -->
-  <img src="{{url_for('static', filename='img/gambar_telyu.png')}}" style="width: 100px; padding-bottom: 20px; padding-top: 10px;">
-  <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/akun');">
-    <i class="fa fa-home w3-xxlarge"></i>
-    <p>HOME</p>
-  </a>
+<nav class="w3-bar w3-small w3-hide-small w3-text-white" style="background-color: #6b0303;" id="myNavbar">
   <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/MLP');">
     <i class="fa-solid fa-layer-group w3-xxlarge"></i>
     <p>MLP</p>
@@ -58,6 +52,7 @@
     <i class="fa-solid fa-viruses w3-xxlarge"></i>
     <p>PASIEN 2</p>
   </a>
+  <h1 class="w3-right" style="font-size: 300%;padding: 0px 50px 0px 0px;">Algoritma Deteksi</h1>
 </nav>
 
 <!-- Navbar on small screens (Hidden on medium and large screens) -->
@@ -75,16 +70,7 @@
 <div class="w3-content w3-padding-64 w3-xlarge" id="container" >
 </div> 
     <!-- Footer -->
-  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-  <!-- End footer -->
-  </footer>
+  
 
 <!-- END PAGE CONTENT -->
 </div>

@@ -11,8 +11,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/739b72b093.js" crossorigin="anonymous"></script>
+<script src=” sweetalert-dev.js”></script>
+<link rel=”stylesheet” href=”sweetalert.css”>
 </head>
+
 <body style="background-color: #fad9df;">
+    {% if report %}
+    <script>
+      swal("selamat!","anda dinyatakan sehat","success");
+    </script>
+    {% else %}
+    <script>
+        swal("selamat!","anda menderita Influenza","success");
+    </script>
+    {% endif %}
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
   <script>
     $.urlParam = function(name){
@@ -29,31 +41,25 @@
     }
   </script>
   <!-- Icon Bar (Sidebar - hidden on small screens) -->
-<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center w3-text-white" style="background-color: #6b0303
-;" id="myNavbar">
-  <!-- Avatar image in top left corner -->
-  <img src="{{url_for('static', filename='img/gambar_telyu.png')}}" style="width: 100px; padding-bottom: 20px; padding-top: 10px;">
-  <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/akun');">
-    <i class="fa fa-home w3-xxlarge"></i>
-    <p>HOME</p>
-  </a>
-  <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/MLP');">
-    <i class="fa-solid fa-layer-group w3-xxlarge"></i>
-    <p>MLP</p>
-  </a>
-  <a  class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/SVM');">
-    <i class="fa-solid fa-chart-line w3-xxlarge"></i>
-    <p>SVM</p>
-  </a>
-  <a  class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/Pasien1');">
-    <i class="fa-solid fa-viruses w3-xxlarge"></i>
-    <p>PASIEN 1</p>
-  </a>
-  <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/Pasien2');">
-    <i class="fa-solid fa-viruses w3-xxlarge"></i>
-    <p>PASIEN 2</p>
-  </a>
-</nav>
+  <nav class="w3-bar w3-small w3-hide-small w3-text-white" style="background-color: #6b0303;" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/MLP');">
+      <i class="fa-solid fa-layer-group w3-xxlarge"></i>
+      <p>MLP</p>
+    </a>
+    <a  class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/SVM');">
+      <i class="fa-solid fa-chart-line w3-xxlarge"></i>
+      <p>SVM</p>
+    </a>
+    <a  class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/Pasien1');">
+      <i class="fa-solid fa-viruses w3-xxlarge"></i>
+      <p>PASIEN 1</p>
+    </a>
+    <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/Pasien2');">
+      <i class="fa-solid fa-viruses w3-xxlarge"></i>
+      <p>PASIEN 2</p>
+    </a>
+    <h1 class="w3-right" style="font-size: 300%;padding: 0px 50px 0px 0px;">Algoritma Deteksi</h1>
+  </nav>
 
 <!-- Navbar on small screens (Hidden on medium and large screens) -->
 <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
@@ -81,9 +87,24 @@
       <br>
       <div class="w3-container">
         <table class="w3-table-all w3-text-black w3-bar-block">
+            <tr>
+            <th></th>
+            <th>precision</th>
+            <th>recall</th>
+            <th>f1-score</th>
+            <th>support</th>
+            </tr>
             {% for key, value in data.items() %}
             <tr>
-                <td> {{ key }} </td>
+                <td> {{key}} </td>
+                <td>{{value.precision}}</td>
+                <td>{{value.recall}}</td>
+                {% if key == "accuracy" %}
+                <td>{{value}}</td>
+                {% else %}
+                <td>{{value["f1-score"]}}</td>
+                {% endif %}
+                <td>{{value.support}}</td>
             </tr>
            {% endfor %}
           </table>
