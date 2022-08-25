@@ -23,7 +23,7 @@ class mlp:
   def mlp(self, DetakJantung):
     kumpulandata = pd.read_csv("hasil1.csv")
     hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]
-    kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(14,8),label=["sehat","influenza"],title="deteksi detak jantung dengan penderita")
+    kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(14,8),title="deteksi detak jantung dengan penderita")
     plt.show()
     print(hasildata.head())
     dss = preproces().preproces()

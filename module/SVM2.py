@@ -27,7 +27,7 @@ class svm2:
         hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]          
         print(kumpulandata.head())
         df = preproces().preproces()
-        kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(14,8),label=["sehat","influenza"],title="deteksi detak jantung dengan penderita")
+        kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(14,8),title="deteksi detak jantung dengan penderita")
         plt.show()
         feature_df = df[['BPM','RHR','steps']]
         x = np.asarray(feature_df)
