@@ -22,12 +22,12 @@ def akun():
 @app.route('/Pasien1',methods = ['POST', 'GET'])
 def pasien1():
     df = pd.read_csv('hasil1.csv', nrows=1000)
-    return render_template('pasien1.html', tables=[df.to_html(classes='data')], titles=df.columns.values)
+    return render_template('pasien1.html', tables=[df.loc[:, df.columns != 'DateTime'].to_html(classes='data')], titles=df.columns.values)
 
 @app.route('/Pasien2',methods = ['POST', 'GET'])
 def pasien2():
     df = pd.read_csv('hasil2.csv', nrows=1000)
-    return render_template('pasien2.html', tables=[df.to_html(classes='data')], titles=df.columns.values)
+    return render_template('pasien2.html', tables=[df.loc[:, df.columns != 'DateTime'].to_html(classes='data')], titles=df.columns.values)
 
 @app.route('/MLP',methods = ['POST', 'GET'])
 def hMLP():

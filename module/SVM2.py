@@ -159,5 +159,4 @@ class svm2:
                 'g--',
                 linewidth=2)
         plt.savefig("static/img/svm.png", format='png')
-        plt.show()
         return classification_report(y_test, yhat,output_dict=True),clf.predict([[int(DetakJantung)/100,random.random(),random.random()]])
