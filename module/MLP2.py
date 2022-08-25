@@ -22,7 +22,10 @@ from module.preprocess2 import preproces
 class mlp2:
   def mlp2(self, DetakJantung):
     kumpulandata = pd.read_csv("hasil2.csv")
-    kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]
+    hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]
+    print(kumpulandata.head())
+    kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(14,8),label=["sehat","influenza"],title="deteksi detak jantung dengan penderita")
+    plt.show()
     dss = preproces().preproces()
     dss
 

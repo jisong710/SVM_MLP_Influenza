@@ -24,9 +24,11 @@ import matplotlib.pyplot as plt
 class svm:
     def svm(self, DetakJantung):
         kumpulandata = pd.read_csv("hasil1.csv")
-        kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]          
+        hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung] 
+        print(kumpulandata.head())
+        kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(14,8),label=["sehat","influenza"],title="deteksi detak jantung dengan penderita")
+        plt.show()  
         df = preproces().preproces()
-
         feature_df = df[['BPM','RHR','steps']]
         x = np.asarray(feature_df)
         x[0:50]
