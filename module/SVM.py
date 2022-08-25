@@ -39,7 +39,7 @@ class svm:
         y = np.asarray(df['Target'])
         y[:50] , y[len(y)-50:]
 
-        x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.3, random_state=123)
+        x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.4, random_state=123)
         print('Train set:', x_train.shape, y_train.shape)
         print('Test set:', x_test.shape, y_test.shape)
 
@@ -68,7 +68,7 @@ class svm:
         import itertools
 
         def plot_confusion_matrix(cm, classes,
-                                normalize=True,
+                                normalize=False,
                                 title='Confusion matrix',
                                 cmap=plt.cm.Blues):
             """
@@ -110,7 +110,7 @@ class svm:
         plt.figure()
         plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
         # plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
-        plt.savefig('svm.png')
+        plt.savefig("static/img/svm.png", format='png')
         from sklearn.metrics import f1_score
         f1_score(y_test, yhat, average='weighted')
 
@@ -162,4 +162,5 @@ class svm:
                 points_of_line_below[:, 1], 
                 'g--',
                 linewidth=2)
+        
         return classification_report(y_test, yhat,output_dict=True),clf.predict([[int(DetakJantung)/100,random.random(),random.random()]])
