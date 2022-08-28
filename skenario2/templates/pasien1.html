@@ -1,0 +1,12 @@
+<div class="w3-container">
+    <h2>data pasien 1</h2>
+    <div class="w3-responsive">
+    <table class="w3-table-all w3-text-black w3-bar-block">
+      {% for table in tables %}
+        <tr>
+          <td>{{ table|safe }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    </div>
+</div>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SVM dan MLP
+</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<meta name="viewport" content="width=SVM-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/739b72b093.js" crossorigin="anonymous"></script>
+<script src=” sweetalert-dev.js”></script>
+<link rel=”stylesheet” href=” sweetalert.css”>
+</head>
+<body style="background-color: #fad9df;">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+  <script>
+    $.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null) {
+       return null;
+    }
+    return decodeURI(results[1]) || 0;
+    }
+    if($.urlParam('halaman')!=null){
+      $(function(){
+      $("#container").load("/"+$.urlParam('halaman'));
+    });
+    }
+  </script>
+  <!-- Icon Bar (Sidebar - hidden on small screens) -->
+  <nav class="w3-bar w3-small w3-hide-small w3-text-white" style="background-color: #6b0303;" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/MLP');">
+      <i class="fa-solid fa-layer-group w3-xxlarge"></i>
+      <p>MLP</p>
+    </a>
+    <a  class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/SVM');">
+      <i class="fa-solid fa-chart-line w3-xxlarge"></i>
+      <p>SVM</p>
+    </a>
+    <a  class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/Pasien1');">
+      <i class="fa-solid fa-viruses w3-xxlarge"></i>
+      <p>PASIEN 1</p>
+    </a>
+    <a class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="$('#container').load('/Pasien2');">
+      <i class="fa-solid fa-viruses w3-xxlarge"></i>
+      <p>PASIEN 2</p>
+    </a>
+    <h1 class="w3-right" style="font-size: 300%;padding: 0px 50px 0px 0px;">Algoritma Deteksi</h1>
+  </nav>
+
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+  <div class="w3-bar w3-pink w3-opacity w3-hover-opacity-off w3-center w3-small">
+    <a class="w3-bar-item w3-button" style="width:20% !important" onclick="$('#container').load('/akun/');">HOME</a>
+    <a class="w3-bar-item w3-button" style="width:20% !important" onclick="$('#container').load('/MLP/');">GEDUNG</a>
+    <a class="w3-bar-item w3-button" style="width:20% !important" onclick="$('#container').load('/SVM/');">DEVICE</a>
+    <a class="w3-bar-item w3-button" style="width:20% !important" onclick="$('#container').load('/Pasien1/');">WAKTU</a>
+    <a class="w3-bar-item w3-button" style="width:20% !important" onclick="$('#container').load('/Pasien2/');">OLAH</a>
+  </div>
+</div>
+{% if report == 0 %}
+<script>
+  alert("anda dinyatakan sehat");
+</script>
+{% else %}
+<script>
+    alert("anda menderita Influenza");
+</script>
+{% endif %}
+<!-- Page Content -->
+<div class="w3-content w3-padding-64 w3-xlarge" id="container" >
+    <form class="w3-container" action="/MLP" method="POST">
+        <h2>Mencari data dengan MLP</h2>
+        <p><select class="w3-select" name="pasien">
+          <option value="" disabled selected>~~Urutan Pasien~~</option>
+          <option value="1">Pasien 1</option>
+          <option value="2">Pasien 2</option>
+        </select></p>
+        <p><input class="w3-input w3-hover-green" type="text" name="BPM" placeholder="silahkan masukan detak jantung"></p>
+        <input type="submit" class="w3-button w3-teal" value="submit">
+      </form>
+      <br>
+      <div class="w3-container">
+        <table class="w3-table-all w3-text-black w3-bar-block">
+            <tr>
+            <th></th>
+            <th>precision</th>
+            <th>recall</th>
+            <th>f1-score</th>
+            <th>support</th>
+            </tr>
+            {% for key, value in data.items() %}
+            <tr>
+                <td> {{key}} </td>
+                <td>{{value.precision}}</td>
+                <td>{{value.recall}}</td>
+                {% if key == "accuracy" %}
+                <td>{{value}}</td>
+                {% else %}
+                <td>{{value["f1-score"]}}</td>
+                {% endif %}
+                <td>{{value.support}}</td>
+            </tr>
+           {% endfor %}
+          </table>
+          <img src="{{ url_for('static', filename='img/mlp.png') }}" alt="" srcset="" style="max-height: 500px;">
+      </div>
+</div> 
+    <!-- Footer -->
+  <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  <!-- End footer -->
+  </footer>
+
+<!-- END PAGE CONTENT -->
+</div>
+
+</body>
+</html>
