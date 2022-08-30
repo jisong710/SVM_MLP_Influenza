@@ -19,12 +19,16 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.svm import SVC
 from module.dataclean import dataclean
 import matplotlib
+from io import StringIO
+import sys
 matplotlib.use('Agg')
 # %matplotlib inline 
 import matplotlib.pyplot as plt
 #panjang array
 class svm:
-    def svm(self, DetakJantung):
+    def svm(self, inputDetakJantung):
+        dfdetak = pd.read_csv(StringIO(inputDetakJantung), sep=',')
+        DetakJantung = dfdetak.mean()
         kumpulandata = pd.read_csv("hasil1.csv")
         hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung] 
         print(kumpulandata.head())

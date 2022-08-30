@@ -7,6 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1Ge27vPx2Lqap0GNJVNj-vVSuAH0oCqT8
 """
 
+from io import StringIO
 from random import randint
 import matplotlib
 matplotlib.use('Agg')
@@ -22,7 +23,9 @@ import numpy as np
 from module.preprocess2 import preproces
 
 class mlp2:
-  def mlp2(self, DetakJantung):
+  def mlp2(self, inputDetakJantung):
+    dfdetak = pd.read_csv(StringIO(inputDetakJantung), sep=',')
+    DetakJantung = dfdetak.mean()
     kumpulandata = pd.read_csv("hasil2.csv")
     hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]
     print(kumpulandata.head())

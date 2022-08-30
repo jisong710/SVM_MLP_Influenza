@@ -7,6 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1Ge27vPx2Lqap0GNJVNj-vVSuAH0oCqT8
 """
 
+from io import StringIO
 from random import randint
 import random
 import matplotlib
@@ -20,9 +21,10 @@ from sklearn.metrics import plot_confusion_matrix
 import matplotlib.pyplot as plt
 import numpy as np
 from module.preprocess import preproces
-
 class mlp:
-  def mlp(self, DetakJantung):
+  def mlp(self, inputDetakJantung):
+    dfdetak = pd.read_csv(StringIO(inputDetakJantung), sep=',')
+    DetakJantung = dfdetak.mean()
     kumpulandata = pd.read_csv("hasil1.csv")
     hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]
     kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(14,8),title="deteksi detak jantung dengan penderita")

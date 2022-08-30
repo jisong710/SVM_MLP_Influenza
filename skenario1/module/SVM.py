@@ -25,7 +25,9 @@ import matplotlib.pyplot as plt
 from module.dataclean import dataclean
 #panjang array
 class svm:
-    def svm(self, DetakJantung):
+    def svm(self, inputDetakJantung):
+        dfdetak = pd.read_csv(inputDetakJantung, sep=',')
+        DetakJantung = dfdetak.mean()
         kumpulandata = pd.read_csv("hasil1.csv")
         hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung] 
         print(kumpulandata.head())

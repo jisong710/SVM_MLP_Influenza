@@ -8,6 +8,7 @@ Original file is located at
 """
 
 # Commented out IPython magic to ensure Python compatibility.
+from io import StringIO
 from random import randint
 import random
 import pandas as pd
@@ -24,7 +25,9 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 #panjang array
 class svm2:
-    def svm2(self, DetakJantung):
+    def svm2(self, inputDetakJantung):
+        dfdetak = pd.read_csv(StringIO(inputDetakJantung), sep=',')
+        DetakJantung = dfdetak.mean()
         kumpulandata = pd.read_csv("hasil2.csv")
         hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung] 
         print(kumpulandata.head())
