@@ -27,7 +27,8 @@ from module.dataclean import dataclean
 class svm:
     def svm(self, inputDetakJantung):
         dfdetak = pd.read_csv(inputDetakJantung, sep=',')
-        DetakJantung = dfdetak.mean()
+        seriesDetakJantung = dfdetak.mean()
+        DetakJantung =  seriesDetakJantung.at[0]
         kumpulandata = pd.read_csv("hasil1.csv")
         hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung] 
         print(kumpulandata.head())

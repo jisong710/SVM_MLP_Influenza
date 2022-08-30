@@ -27,7 +27,8 @@ import matplotlib.pyplot as plt
 class svm2:
     def svm2(self, inputDetakJantung):
         dfdetak = pd.read_csv(StringIO(inputDetakJantung), sep=',')
-        DetakJantung = dfdetak.mean()
+        seriesDetakJantung = dfdetak.mean()
+        DetakJantung =  seriesDetakJantung.at[0]
         kumpulandata = pd.read_csv("hasil2.csv")
         hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung] 
         print(kumpulandata.head())
