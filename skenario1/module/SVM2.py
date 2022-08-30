@@ -29,7 +29,8 @@ class svm2:
     def svm2(self, inputDetakJantung):
         dfdetak = pd.read_csv(inputDetakJantung, sep=',')
         seriesDetakJantung = dfdetak.mean()
-        DetakJantung =  seriesDetakJantung.loc[0]
+        print(seriesDetakJantung)
+        DetakJantung =  seriesDetakJantung.loc['BPM']
         kumpulandata = pd.read_csv("hasil2.csv")
         hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung] 
         print(kumpulandata.head())

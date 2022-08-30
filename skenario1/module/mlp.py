@@ -25,7 +25,8 @@ class mlp:
   def mlp(self, inputDetakJantung):
     dfdetak = pd.read_csv(inputDetakJantung, sep=',')
     seriesDetakJantung = dfdetak.mean()
-    DetakJantung =  seriesDetakJantung.loc[0]
+    print(seriesDetakJantung)
+    DetakJantung =  seriesDetakJantung.loc['BPM']
     kumpulandata = pd.read_csv("hasil1.csv")
     hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]
     kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(14,8),title="deteksi detak jantung dengan penderita")
