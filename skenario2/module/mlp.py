@@ -23,8 +23,10 @@ import numpy as np
 from module.preprocess import preproces
 class mlp:
   def mlp(self, inputDetakJantung):
-    dfdetak = pd.read_csv(StringIO(inputDetakJantung), sep=',')
-    seriesDetakJantung = dfdetak.mean()
+    dfdetak = pd.read_csv(StringIO(inputDetakJantung), sep=',',header=None)
+    seriesDetakJantung = dfdetak.transpose()
+    seriesDetakJantung = seriesDetakJantung.mean()
+    print(seriesDetakJantung)
     DetakJantung =  seriesDetakJantung.loc[0]
     kumpulandata = pd.read_csv("hasil1.csv")
     hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]

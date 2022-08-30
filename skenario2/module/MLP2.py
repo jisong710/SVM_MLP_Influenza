@@ -24,8 +24,10 @@ from module.preprocess2 import preproces
 
 class mlp2:
   def mlp2(self, inputDetakJantung):
-    dfdetak = pd.read_csv(StringIO(inputDetakJantung), sep=',')
-    seriesDetakJantung = dfdetak.mean()
+    dfdetak = pd.read_csv(StringIO(inputDetakJantung), sep=',',header=None)
+    seriesDetakJantung = dfdetak.transpose()
+    seriesDetakJantung = seriesDetakJantung.mean()
+    print(seriesDetakJantung)
     DetakJantung =  seriesDetakJantung.loc[0]
     kumpulandata = pd.read_csv("hasil2.csv")
     hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]
