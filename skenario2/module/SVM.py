@@ -17,7 +17,7 @@ import scipy.optimize as opt
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.svm import SVC
-from module.preprocess import preproces
+from module.dataclean import dataclean
 import matplotlib
 matplotlib.use('Agg')
 # %matplotlib inline 
@@ -30,7 +30,7 @@ class svm:
         print(kumpulandata.head())
         kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(10,5),title="deteksi detak jantung dengan penderita")
         plt.show()  
-        df = preproces().preproces()
+        df = dataclean().dataclean()
         feature_df = df[['BPM','RHR','steps']]
         x = np.asarray(feature_df)
         x[0:50]

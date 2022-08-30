@@ -37,6 +37,5 @@ class dataset:
         df1['RHR'] = df3['RHR']
         df1['steps'] = df4['steps']
         df1.set_index('DateTime', inplace=True)
-        df1 = df1.resample("5min").mean()
         print(df1.head())
         return df1
