@@ -74,14 +74,14 @@
   
 <!-- Page Content -->
 <div class="w3-content w3-padding-64 w3-xlarge" id="container" >
-    <form class="w3-container" action="/SVM" method="POST">
+    <form class="w3-container" action="/SVM" method="POST" enctype="multipart/form-data">
         <h2>Mencari data dengan SVM</h2>
         <p><select class="w3-select" name="pasien">
           <option value="" disabled selected>~~Urutan Pasien~~</option>
           <option value="1">Pasien 1</option>
           <option value="2">Pasien 2</option>
         </select></p>
-        <p><input class="w3-input w3-hover-green" type="text" name="BPM" placeholder="silahkan masukan detak jantung"></p>
+        <p><input class="w3-input w3-hover-green" type="file" name="BPM" placeholder="silahkan masukan detak jantung"></p>
         <input type="submit" class="w3-button w3-teal" value="submit">
       </form>
       <br>

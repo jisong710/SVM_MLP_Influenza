@@ -74,7 +74,7 @@ class svm2:
         import itertools
 
         def plot_confusion_matrix(cm, classes,
-                                normalize=True,
+                                normalize=False,
                                 title='Confusion matrix',
                                 cmap=plt.cm.Blues):
             """
@@ -114,9 +114,9 @@ class svm2:
 
         # Plot non-normalized confusion matrix
         plt.figure()
-        plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= True,  title='Confusion matrix')
+        plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
         # plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
-        plt.savefig('svm.png')
+        plt.savefig('static/img/svm.png')
         from sklearn.metrics import f1_score
         f1_score(y_test, yhat, average='weighted')
 
