@@ -110,7 +110,7 @@ class mlp:
     hasildeteksi =[]
     jumlahdetak = dfdetak.shape
     for i in range(jumlahdetak[0]):
-        hasildeteksi.append(clf.predict([[int(dfdetak[i])/100,random.random(),random.random()]]))
+        hasildeteksi.append(clf.predict([[int(dfdetak['BPM'][i])/100,random.random(),random.random()]]))
     meandeteksi = pd.Series(hasildeteksi).mean()
     hasilsehasilhasilnya = meandeteksi[0]
     print('jumlah Target testing yang influenza',len(list(filter(lambda x : x == 1, y_test))))
