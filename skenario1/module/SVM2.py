@@ -45,7 +45,7 @@ class svm2:
         y = np.asarray(df['Target'])
         y[:50] , y[len(y)-50:]
 
-        x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.5, random_state=123)
+        x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.3, random_state=123)
         print('Train set:', x_train.shape, y_train.shape)
         print('Test set:', x_test.shape, y_test.shape)
 
@@ -58,7 +58,7 @@ class svm2:
         tuned_parameters = [
             {"kernel": ["rbf"], "gamma": [1e-3, 1e-4, 1e-5], "C": [1, 10, 100, 1000]}
         ]
-        clf = GridSearchCV(svm.SVC(), tuned_parameters, refit = True, verbose = 3)
+        clf = GridSearchCV(svm.SVC(probability=True), tuned_parameters, refit = True, verbose = 3)
         # clf = svm.SVC(kernel='poly', gamma='auto')
         clf.fit(x_train, y_train) 
         #PENGARUH KERNEL JUGA BISA dan parameter svm yang mempengaruhi
@@ -103,7 +103,7 @@ class svm2:
             plt.xlabel('Predicted label')
 
         # Compute confusion matrix
-        cnf_matrix = confusion_matrix(y_test, yhat)
+        cnf_matrix = confusion_matrix(y, yhat)
         pred_from_train = clf.predict(x_train)
         cnf_matrix_training_data = confusion_matrix(y_train, pred_from_train)
 
