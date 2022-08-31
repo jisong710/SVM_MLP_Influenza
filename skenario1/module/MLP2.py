@@ -107,7 +107,8 @@ class mlp2:
     plt.savefig("static/img/mlp.png", format='png')
     # plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
     hasildeteksi =[]
-    for i in range(dfdetak.count()):
+    jumlahdetak = dfdetak.shape
+    for i in range(jumlahdetak[0]):
         hasildeteksi.append(clf.predict([[int(dfdetak[i])/100,random.random(),random.random()]]))
     meandeteksi = pd.Series(hasildeteksi).mean()
     hasilsehasilhasilnya = meandeteksi[0]
