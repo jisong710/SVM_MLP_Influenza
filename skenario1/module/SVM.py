@@ -103,7 +103,7 @@ class svm:
             plt.xlabel('Predicted label')
 
         # Compute confusion matrix
-        cnf_matrix = confusion_matrix(y, yhat)
+        cnf_matrix = confusion_matrix(y_test, yhat)
         pred_from_train = clf.predict(x_train)
         cnf_matrix_training_data = confusion_matrix(y_train, pred_from_train)
 
