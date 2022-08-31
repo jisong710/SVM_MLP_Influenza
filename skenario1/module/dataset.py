@@ -4,7 +4,6 @@ class dataset:
     def dataset(self,):
 
         df1 = pd.read_csv("HR PASIEN 1.csv", sep=';')
-        df2 = pd.read_csv("HRV PASIEN 1.csv", sep=';')
         df3 = pd.read_csv("RHR PASIEN 1.csv", sep=';')
         df4 = pd.read_csv("STEPS PASIEN 1.csv", sep=';')
         print(df1.head())
@@ -15,12 +14,6 @@ class dataset:
         df1.head(40)
         df1
 
-        df2['DateTime'] = pd.to_datetime(df2['DateTime'])
-        df2
-
-        df2.dtypes
-        df2.head(40)
-        df2
         
         df3.dtypes
         df3['DateTime'] = pd.to_datetime(df3['DateTime'])
@@ -33,7 +26,6 @@ class dataset:
         df4
         df4.head(40)
         df4
-        df1['RMSSD'] = df2['RMSSD']
         df1['RHR'] = df3['RHR']
         df1['steps'] = df4['steps']
         df1.set_index('DateTime', inplace=True)

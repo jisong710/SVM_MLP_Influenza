@@ -56,9 +56,8 @@ class svm2:
         from sklearn import svm
         #GridSearch
         tuned_parameters = [
-            {"kernel": ["rbf"], "gamma": [1e-3, 1e-4], "C": [1, 10, 100, 1000]}
+            {"kernel": ["rbf"], "gamma": [1e-3, 1e-4, 1e-5], "C": [1, 10, 100, 1000]}
         ]
-
         clf = GridSearchCV(svm.SVC(), tuned_parameters, refit = True, verbose = 3)
         # clf = svm.SVC(kernel='poly', gamma='auto')
         clf.fit(x_train, y_train) 
@@ -168,4 +167,9 @@ class svm2:
                 points_of_line_below[:, 1], 
                 'g--',
                 linewidth=2)
-        return classification_report(y_test, yhat,output_dict=True),clf.predict([[int(DetakJantung)/100,random.random(),random.random()]])
+        hasildeteksi =[]
+        for i in range(dfdetak.count()):
+            hasildeteksi.append(clf.predict([[int(dfdetak[i])/100,random.random(),random.random()]]))
+        meandeteksi = pd.Series(hasildeteksi).mean()
+        hasilsehasilhasilnya = meandeteksi[0]
+        return classification_report(y_test, yhat,output_dict=True),hasilsehasilhasilnya

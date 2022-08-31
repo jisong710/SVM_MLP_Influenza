@@ -7,6 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1Ge27vPx2Lqap0GNJVNj-vVSuAH0oCqT8
 """
 
+from itertools import count
 from random import randint
 import random
 import matplotlib
@@ -106,11 +107,15 @@ class mlp:
     plot_confusion_matrix(cnf_matrix, classes=['Sehat','Influenza'],normalize= True,  title='Confusion matrix')
     plt.savefig("static/img/mlp.png", format='png')
     # plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
-
+    hasildeteksi =[]
+    for i in range(dfdetak.count()):
+        hasildeteksi.append(clf.predict([[int(dfdetak[i])/100,random.random(),random.random()]]))
+    meandeteksi = pd.Series(hasildeteksi).mean()
+    hasilsehasilhasilnya = meandeteksi[0]
     print('jumlah Target testing yang influenza',len(list(filter(lambda x : x == 1, y_test))))
     print('jumlah hasil pred. data testing yang influenza',len(list(filter(lambda x : x == 1, y_pred))))
 
     print('jumlah hasil pred. semua dataset yang influenza',len(list(filter(lambda x : clf.predict([x]) == 1, X))))
     print('jumlah hasil pred. semua dataset yang sehat',len(list(filter(lambda x : clf.predict([x]) == 0, X))))
     print('kombinasi BPM steps yang influenza', list(filter(lambda x : clf.predict([x]) == 1, X_test)))
-    return classification_report(y_test, y_pred,output_dict=True),clf.predict([[int(DetakJantung)/100,random.random(),random.random()]])
+    return classification_report(y_test, y_pred,output_dict=True),hasilsehasilhasilnya
