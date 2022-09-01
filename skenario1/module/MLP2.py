@@ -108,8 +108,12 @@ class mlp2:
     # plot_confusion_matrix(cnf_matrix_training_data, classes=['Sehat','Influenza'],normalize= False,  title='Confusion matrix')
     hasildeteksi =[]
     jumlahdetak = dfdetak.shape
+    from sklearn import preprocessing
+    normalize = preprocessing.MinMaxScaler()
+    dfdetak= pd.DataFrame(normalize.fit_transform(dfdetak.values), columns=dfdetak.columns, index=dfdetak.index)
     for i in range(jumlahdetak[0]):
-        hasildeteksi.append(clf.predict([[int(dfdetak['BPM'][i])/100,random.random(),random.random()]]))
+        hasildeteksi.append(clf.predict([[dfdetak['BPM'][i],random.random(),random.random()]]))
+    print(hasildeteksi)
     meandeteksi = pd.Series(hasildeteksi).mean()
     hasilsehasilhasilnya = meandeteksi[0]
     print('jumlah Target testing yang influenza',len(list(filter(lambda x : x == 1, y_test))))

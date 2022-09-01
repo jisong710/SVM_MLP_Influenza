@@ -45,7 +45,7 @@ class svm2:
         y = np.asarray(df['Target'])
         y[:50] , y[len(y)-50:]
 
-        x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.3, random_state=123)
+        x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.4, random_state=123)
         print('Train set:', x_train.shape, y_train.shape)
         print('Test set:', x_test.shape, y_test.shape)
 
@@ -56,16 +56,15 @@ class svm2:
         from sklearn import svm
         #GridSearch
         tuned_parameters = [
-            {"kernel": ["rbf"], "gamma": [1e-3, 1e-4, 1e-5], "C": [1, 10, 100, 1000]}
+            {"kernel": ["rbf"], "gamma": [1,0.1,0.01,1e-3, 1e-4, 1e-5], "C": [1, 10, 100, 1000]}
         ]
-        clf = GridSearchCV(svm.SVC(probability=True), tuned_parameters, refit = True, verbose = 3)
+        clf = GridSearchCV(svm.SVC(), tuned_parameters, refit = True, verbose = 3)
         # clf = svm.SVC(kernel='poly', gamma='auto')
         clf.fit(x_train, y_train) 
         #PENGARUH KERNEL JUGA BISA dan parameter svm yang mempengaruhi
 
         clf.best_params_
         #cari  tau arti kernel,gamaa, c
-
         yhat = clf.predict(x_test)
         yhat[0:5]
 
@@ -170,7 +169,9 @@ class svm2:
         hasildeteksi =[]
         jumlahdetak = dfdetak.shape
         for i in range(jumlahdetak[0]):
-            hasildeteksi.append(clf.predict([[int(dfdetak['BPM'][i])/100,random.random(),random.random()]]))
-        meandeteksi = pd.Series(hasildeteksi).mean()
+            hasildeteksi.append(clf.predict([[int(dfdetak['BPM'][i]),random.randint(69,71),random.randint(0,128)]]))
+        meandeteksi = pd.Series(hasildeteksi)
+        print(meandeteksi)
+        print(dfdetak)
         hasilsehasilhasilnya = meandeteksi[0]
         return classification_report(y_test, yhat,output_dict=True),hasilsehasilhasilnya

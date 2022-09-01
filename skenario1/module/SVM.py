@@ -170,7 +170,9 @@ class svm:
         hasildeteksi =[]
         jumlahdetak = dfdetak.shape
         for i in range(jumlahdetak[0]):
-            hasildeteksi.append(clf.predict([[int(dfdetak['BPM'][i])/100,random.random(),random.random()]]))
+            hasildeteksi.append(clf.predict([[int(dfdetak['BPM'][i]),random.randint(69,71),random.randint(0,128)]]))
         meandeteksi = pd.Series(hasildeteksi).mean()
+        print(meandeteksi)
+        print(dfdetak)
         hasilsehasilhasilnya = meandeteksi[0]
         return classification_report(y_test, yhat,output_dict=True),hasilsehasilhasilnya
