@@ -112,7 +112,7 @@ class mlp2:
     normalize = preprocessing.MinMaxScaler()
     dfdetak= pd.DataFrame(normalize.fit_transform(dfdetak.values), columns=dfdetak.columns, index=dfdetak.index)
     for i in range(jumlahdetak[0]):
-        hasildeteksi.append(clf.predict([[dfdetak['BPM'][i],random.random(),random.random()]]))
+        hasildeteksi.append(clf.predict([[dfdetak['BPM'][i],dfdetak['RHR'][i],dfdetak['steps'][i]]]))
     print(hasildeteksi)
     meandeteksi = pd.Series(hasildeteksi).mean()
     hasilsehasilhasilnya = meandeteksi[0]
