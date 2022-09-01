@@ -24,7 +24,7 @@ from module.preprocess import preproces
 
 class mlp:
   def mlp(self, inputDetakJantung):
-    dfdetak = pd.read_csv(inputDetakJantung, sep=',')
+    dfdetak = pd.read_csv(inputDetakJantung, sep=';')
     seriesDetakJantung = dfdetak.mean()
     print(seriesDetakJantung)
     DetakJantung =  seriesDetakJantung.loc['BPM']

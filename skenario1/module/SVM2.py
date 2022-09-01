@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 #panjang array
 class svm2:
     def svm2(self, inputDetakJantung):
-        dfdetak = pd.read_csv(inputDetakJantung, sep=',')
+        dfdetak = pd.read_csv(inputDetakJantung, sep=';')
         seriesDetakJantung = dfdetak.mean()
         print(seriesDetakJantung)
         DetakJantung =  seriesDetakJantung.loc['BPM']
@@ -169,9 +169,11 @@ class svm2:
         hasildeteksi =[]
         jumlahdetak = dfdetak.shape
         for i in range(jumlahdetak[0]):
-            hasildeteksi.append(clf.predict([[int(dfdetak['BPM'][i]),random.randint(69,71),random.randint(0,128)]]))
+            hasildeteksi.append(clf.predict([[int(dfdetak['BPM'][i]),int(dfdetak['RHR'][i]),int(dfdetak['steps'][i])]]))
         meandeteksi = pd.Series(hasildeteksi)
         print(meandeteksi)
         print(dfdetak)
         hasilsehasilhasilnya = meandeteksi[0]
+        print('jumlah hasil pred. semua dataset yang influenza',len(list(filter(lambda x : clf.predict([x]) == 1, x))))
+        print('kombinasi BPM steps yang influenza', list(filter(lambda x : clf.predict([x]) == 1, x_test)))
         return classification_report(y_test, yhat,output_dict=True),hasilsehasilhasilnya

@@ -23,7 +23,7 @@ from module.preprocess2 import preproces
 
 class mlp2:
   def mlp2(self, inputDetakJantung):
-    dfdetak = pd.read_csv(inputDetakJantung, sep=',')
+    dfdetak = pd.read_csv(inputDetakJantung, sep=';')
     seriesDetakJantung = dfdetak.mean()
     print(seriesDetakJantung)
     DetakJantung =  seriesDetakJantung.loc['BPM']
