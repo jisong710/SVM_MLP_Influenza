@@ -1,5 +1,5 @@
 import pandas as pd
-
+import matplotlib.pyplot as plt
 class dataset:
     def dataset(self):
         df1 = pd.read_csv("HR PASIEN 2.csv", sep=';')
