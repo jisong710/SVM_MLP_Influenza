@@ -1,5 +1,5 @@
 import pandas as pd
-
+import matplotlib.pyplot as plt
 class dataset:
     def dataset(self):
         df1 = pd.read_csv("HR PASIEN 2.csv", sep=';')
@@ -30,4 +30,5 @@ class dataset:
         df1['steps'] = df4['steps']
         df1.set_index('DateTime', inplace=True)
         print(df1.head())
+        
         return df1

@@ -111,6 +111,7 @@ class mlp2:
     from sklearn import preprocessing
     # normalize = preprocessing.MinMaxScaler()
     # dfdetak= pd.DataFrame(normalize.fit_transform(dfdetak.values), columns=dfdetak.columns, index=dfdetak.index)
+    print(dfdetak.shape)
     for i in range(jumlahdetak[0]):
         hasildeteksi.append(clf.predict([[dfdetak['BPM'][i]/100,dfdetak['RHR'][i]/100,dfdetak['steps'][i]/100]]))
     print(hasildeteksi)
