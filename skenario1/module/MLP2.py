@@ -31,7 +31,7 @@ class mlp2:
     hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung]
     print(kumpulandata.head())
     kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(14,8),title="deteksi detak jantung dengan penderita")
-    plt.show()
+    plt.savefig('static/img/gambarRasio.png')
     dss = preproces().preproces()
     dss
 
