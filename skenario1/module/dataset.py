@@ -30,6 +30,7 @@ class dataset:
         df1['steps'] = df4['steps']
         df1.set_index('DateTime', inplace=True)
         print(df1.head())
+        plt.figure()
         df1['Target'].value_counts().plot(kind='bar',figsize=(14,8),title="deteksi detak jantung dengan penderita")
         plt.savefig('static/img/gambarsebelum.png')
         return df1

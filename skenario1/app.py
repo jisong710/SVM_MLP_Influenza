@@ -21,7 +21,7 @@ def akun():
 
 @app.route('/Pasien1',methods = ['POST', 'GET'])
 def pasien1():
-    df = pd.read_csv('hasil1.csv',skiprows=range(500,12000))
+    df = pd.read_csv('hasil1.csv',skiprows=range(500,5000))
     return render_template('pasien1.html', tables=[df.loc[:, df.columns != 'DateTime'].to_html(classes='data')], titles=df.columns.values)
 
 @app.route('/Pasien2',methods = ['POST', 'GET'])

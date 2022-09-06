@@ -34,6 +34,7 @@ class svm2:
         kumpulandata = pd.read_csv("hasil2.csv")
         hasildata = kumpulandata.loc[kumpulandata['BPM'] == DetakJantung] 
         print(kumpulandata.head())
+        plt.figure()
         kumpulandata['Target'].value_counts().plot(kind='bar',figsize=(10,5),title="deteksi detak jantung dengan penderita")
         plt.savefig('static/img/gambarRasio.png') 
         df = dataclean().dataclean()
