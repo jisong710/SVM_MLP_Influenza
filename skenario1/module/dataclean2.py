@@ -1,10 +1,11 @@
 from random import randint
 import matplotlib.pyplot as plt
 from module.dataset2 import dataset
+import pandas as pd
 
 class dataclean:
     def dataclean(self):
-        df = dataset().dataset()
+        df = pd.read_csv('subjek2.csv', sep = ';')
         print(df['BPM'].value_counts())
         print(df['RHR'].value_counts())
         print(df['steps'].value_counts())
